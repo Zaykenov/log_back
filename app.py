@@ -4,7 +4,6 @@ from flask_swagger_ui import get_swaggerui_blueprint
 from flask_cors import CORS
 from datetime import datetime
 import os
-
 from dotenv import load_dotenv
 
 # Load environment variables
