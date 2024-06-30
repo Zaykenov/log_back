@@ -1,20 +1,29 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Incubator API",
-    "version": "1.0.0"
+    "description": "Incubator API",
+    "version": "1.0.0",
+    "title": "Incubator API"
   },
+  "host": "localhost:5000",
   "basePath": "/",
+  "tags": [
+    {
+      "name": "users",
+      "description": "Operations about users"
+    }
+  ],
   "schemes": [
     "http"
   ],
   "paths": {
     "/users": {
       "get": {
+        "tags": ["users"],
         "summary": "Get all users",
         "responses": {
           "200": {
-            "description": "A list of users",
+            "description": "Successful response",
             "schema": {
               "type": "array",
               "items": {
@@ -25,12 +34,13 @@
         }
       },
       "post": {
+        "tags": ["users"],
         "summary": "Add a new user",
         "parameters": [
           {
             "in": "body",
             "name": "body",
-            "description": "User object",
+            "description": "User object that needs to be added",
             "required": true,
             "schema": {
               "$ref": "#/definitions/User"
@@ -46,18 +56,20 @@
     },
     "/users/{user_id}": {
       "put": {
+        "tags": ["users"],
         "summary": "Update an existing user",
         "parameters": [
           {
             "name": "user_id",
             "in": "path",
             "required": true,
-            "type": "integer"
+            "type": "integer",
+            "format": "int64"
           },
           {
             "in": "body",
             "name": "body",
-            "description": "User object",
+            "description": "User object that needs to be updated",
             "required": true,
             "schema": {
               "$ref": "#/definitions/User"
@@ -71,61 +83,20 @@
         }
       },
       "delete": {
+        "tags": ["users"],
         "summary": "Delete a user",
         "parameters": [
           {
             "name": "user_id",
             "in": "path",
             "required": true,
-            "type": "integer"
+            "type": "integer",
+            "format": "int64"
           }
         ],
         "responses": {
           "200": {
             "description": "User deleted"
-          }
-        }
-      }
-    },
-    "/usages/{usage_id}": {
-      "put": {
-        "summary": "Update an existing usage",
-        "parameters": [
-          {
-            "name": "usage_id",
-            "in": "path",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Usage object",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Usage"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Usage updated"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete a usage",
-        "parameters": [
-          {
-            "name": "usage_id",
-            "in": "path",
-            "required": true,
-            "type": "integer"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Usage deleted"
           }
         }
       }
@@ -136,30 +107,14 @@
       "type": "object",
       "properties": {
         "UserID": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int64"
         },
         "Name": {
           "type": "string"
         },
         "PhoneNumber": {
           "type": "string"
-        },
-        "Usages": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Usage"
-          }
-        }
-      }
-    },
-    "Usage": {
-      "type": "object",
-      "properties": {
-        "UsageID": {
-          "type": "integer"
-        },
-        "UserID": {
-          "type": "integer"
         },
         "UsageDetails": {
           "type": "string"
