@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_from_directory, render_template
+from flask import Flask, request, jsonify, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from flask_swagger_ui import get_swaggerui_blueprint
 from flask_cors import CORS
@@ -104,7 +104,7 @@ def index():
 
 @app.route('/static/<path:path>')
 def send_static(path):
-    return send_from_directory(app.static_folder, path)
+    return send_from_directory('static', path)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=5000)
