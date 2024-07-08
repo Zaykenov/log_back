@@ -14,7 +14,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 db = SQLAlchemy(app)
 
 # Apply CORS to all routes
-cors = CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 class User(db.Model):
     UserID = db.Column(db.Integer, primary_key=True)
