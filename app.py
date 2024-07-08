@@ -13,8 +13,8 @@ app = Flask(__name__, static_folder='static')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 db = SQLAlchemy(app)
 
-# Apply CORS to all routes
-CORS(app, resources={r"/*": {"origins": "*"}})
+# Apply CORS to all routes with detailed headers
+CORS(app, resources={r"/*": {"origins": "https://web-production-9be6.up.railway.app", "allow_headers": "*", "methods": "*"}})
 
 class User(db.Model):
     UserID = db.Column(db.Integer, primary_key=True)
